@@ -2,7 +2,7 @@
   "name": "nodetest",
   "version": "1.0.0",
   "description": "a node test",
-  "main": "serverModule.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,7 +16,4 @@
     "url": "https://github.com/mortensenm1205/nodeTest/issues"
   },
   "homepage": "https://github.com/mortensenm1205/nodeTest#readme",
-  "devDependencies": {
-    "ws": "^3.3.2"
-  }
 }
