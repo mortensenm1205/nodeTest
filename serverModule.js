@@ -19,7 +19,7 @@ const req = http.request(function(res) {
   });
 });
 
-req.listen(9000)
+req.listen(9000);
 req.end();
 
 // http.request(options, function(res) {
