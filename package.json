@@ -1,0 +1,22 @@
+{
+  "name": "nodetest",
+  "version": "1.0.0",
+  "description": "a node test",
+  "main": "serverModule.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mortensenm1205/nodeTest.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mortensenm1205/nodeTest/issues"
+  },
+  "homepage": "https://github.com/mortensenm1205/nodeTest#readme",
+  "devDependencies": {
+    "ws": "^3.3.2"
+  }
+}

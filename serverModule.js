@@ -1,11 +1,30 @@
 const http = require('http');
 
-const server = http.createServer();
+// const server = http.createServer();
+//
+// server.on('request', function(req, res) {
+//   res.write("<h1>Hi World</h1>");
+//   res.write("<p>Some more text</p>");
+//   res.write(`<p>${res.statusMessage}</p>`);
+//   res.write(req.method);
+//   res.end('this has ended');
+// });
+//
+// server.listen(9000);
 
-server.on('request', function(req, res) {
-  res.end("<h1>Hello World</h1>");
+
+const req = http.request(function(res) {
+  res.on('response', function() {
+    console.log("this has ended");
+  });
 });
 
-server.listen(7227);
+req.listen(9000)
+req.end();
 
-console.log("myServ hasa finished sending the response");
+// http.request(options, function(res) {
+//   res.on('response', function(res) {
+//     console.log(res.statusMessage);
+//   });
+//   res.read('response');
+// });
