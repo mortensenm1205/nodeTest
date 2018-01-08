@@ -1,23 +1,11 @@
 const http = require('http');
-const Emitter = require('events');
 
-var myEmitter = new Emitter();
+const server = http.createServer();
 
-var myServ = http.createServer(function(req, res) {
-  // res.on('end', function() {
-  //   console.log("hello")
-  // });
-
-  myEmitter.on('start', function() {
-    res.end("<h1>Hello World!</h1>");
-  });
-
-  myEmitter.emit('start');
-
+server.on('request', function(req, res) {
+  res.end("<h1>Hello World</h1>");
 });
 
-myServ.listen(7227);
+server.listen(7227);
 
-
-
-console.log("myServ hasa finished sending the response")
+console.log("myServ hasa finished sending the response");
