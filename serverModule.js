@@ -1,16 +1,22 @@
-var http = require('http');
-var eventEmitter = require('events');
+const http = require('http');
+const Emitter = require('events');
 
-http.createServer(function(req, res) {
+var myEmitter = new Emitter();
+
+var myServ = http.createServer(function(req, res) {
   // res.on('end', function() {
   //   console.log("hello")
   // });
 
-  http.on('start', function() {
-    console.log("something");
+  myEmitter.on('start', function() {
+    res.end("<h1>Hello World!</h1>");
   });
 
-}).listen(7227);
+  myEmitter.emit('start');
+
+});
+
+myServ.listen(7227);
 
 
 
