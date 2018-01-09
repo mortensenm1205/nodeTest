@@ -11,4 +11,4 @@ function strInterval() {
   }
 }
 
-strInterval();
+module.exports = {strInterval: strInterval};
