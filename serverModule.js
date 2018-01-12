@@ -1,6 +1,6 @@
 const http = require('http');
 
-const server = http.createServer();
+// const server = http.createServer();
 
 
 /*
@@ -39,19 +39,26 @@ USING HTTP.REQUEST()
 USING HTTP.GET()
 */
 
-var rawData = ''
 var jSon;
 
-http.get('http://NflArrest.com/api/v1/crime', function(response) {
-  console.log(response.headers);
+var options = {
+  hostname: 'www.google.com',
+  port: 80,
+  path: '/',
+  method: 'GET',
+};
+
+var req = http.request(options, function(response) {
+  // response.setEncoding('utf8');
   response.on('data', function(chunk) {
-    rawData += chunk;
+    jSon += JSON.parse(chunk);
   });
+
   response.on('end', function() {
-    jSon = JSON.parse(rawData)
-    console.log(jSon[0].Category);
+    console.log(jSon);
   });
 });
 
+req.end();
 
-module.exports = server;
+// module.exports = server;
