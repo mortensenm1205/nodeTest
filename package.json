@@ -1,7 +1,7 @@
 {
   "name": "nodetest",
   "version": "1.0.0",
-  "description": "a node test",
+  "description": "a node package that tests about Node Fundamentals",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,10 +10,13 @@
     "type": "git",
     "url": "git+https://github.com/mortensenm1205/nodeTest.git"
   },
-  "author": "",
+  "author": "Matt Mortensen",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/mortensenm1205/nodeTest/issues"
   },
   "homepage": "https://github.com/mortensenm1205/nodeTest#readme",
+  "dependencies": {
+    "promise": "^8.0.1"
+  }
 }
