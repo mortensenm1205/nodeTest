@@ -5,19 +5,37 @@ const url = "http://nflarrest.com/api/v1/crime/topPlayers/DUI";
 USING HTTP.GET()
 */
 
-http.get(url, res => {
-  res.setEncoding("utf8");
-  let body = "";
-  res.on("data", data => {
-    body += data;
+//Using a promise version of htt.get();
+function storingData() {
+  let body;
+  return new Promise((resolve, reject) => {
+    http.get(url, (res) => {
+      res.setEncoding('utf8');
+      res.on('data', (data) => {
+        body += data;
+      });
+
+      res.on('end', () => {
+        resolve(body);
+      });
+    });
   });
-  res.on("end", () => {
-    body = JSON.parse(body);
-    console.log(`Here's a name: ${body[5].Name}. This was used with http.get()`);
-  });
+}
+
+//creating a server for clients(localhost) to call out to
+var myServer = http.createServer((req, res) => {
+  //then using .then for the http.get() promise version
+  res.writeHead(200, {'Content-Type':'application/json'});
+  storingData().then((message) => {
+    res.write(message);
+    res.end();
+  })
 });
 
+myServer.listen(9000);
 
 
-
-// module.exports = server;
+//The response is a long string of multiple objects. I thought doing JSON
+//would work but it gives me an error
+//exporting it out
+module.exports = {myServer: myServer}
