@@ -6,7 +6,7 @@ USING HTTP.GET()
 */
 
 //Using a promise version of htt.get();
-function storingData() {
+function storingData(url) {
   let body;
   return new Promise((resolve, reject) => {
     http.get(url, (res) => {
@@ -26,7 +26,7 @@ function storingData() {
 var myServer = http.createServer((req, res) => {
   //then using .then for the http.get() promise version
   res.writeHead(200, {'Content-Type':'application/json'});
-  storingData().then((message) => {
+  storingData(url).then((message) => {
     res.write(message);
     res.end();
   })
