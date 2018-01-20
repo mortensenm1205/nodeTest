@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/mortensenm1205/nodeTest#readme",
   "dependencies": {
+    "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "promise": "^8.0.1"
   }
