@@ -1,45 +1,59 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+var someStringData;
+var justData;
+
+var postedData = (req,res,next) => {
+  var post_data = {
+    "value1": "someString"
+  };
+
+  req.body = post_data;
+  next();
+};
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
+app.use(postedData);
 
-var post_data = {
-  "value" : "someString"
-}
+app.use('/', express.static('public'));
 
-
-// function PostData(url) {
-//   var post_data = {
-//     "value" : "someString"
-//   }
+/*
+  Handling multiple handler functions with same route endpoint by chainging
+  them together, also tried to have each one display to data to the endpoint
+  but couldnt find a way to get around the request-response cycle when it came
+  to displaying data.
+*/
+// app.get('/', function (req, res, next) {
+//   console.log('ID:', req.params);
+//   next();
+// }, function (req, res, next) {
+//   res.send('User Info');
+//   next();
+// })
 //
-//   return new Promise((resolve, reject) => {
-//     if(post_data === {}) {
-//       reject(new Error("whoops"));
-//     }
-//
-//       resolve(post_data);
-//
-//   });
-//
-//
-//
-// }
-//
-// app.get('/', (req, res) => {
-//   PostData('/').then((message) => {
-//     res.send(message);
-//   });
+// app.get('/', function (req, res, next) {
+//   console.log('some Info');
 // })
 
-app.post('/', (req, res) => {
-  req.body = post_data;
-  res.send(req.body);
-});
-
-app.get('/');
+/*
+  Here i am testing how to use multiple handler functions with the data
+  from postedData
+*/
+// app.get('/', (req, res, next) => {
+//   console.log("About to start");
+//   someStringData = JSON.stringify(req.body) + " " + req.method;
+//   justData = JSON.stringify(req.body);
+//   next();
+// });
+//
+// app.get('/', (req, res, next) => {
+//   justData += " and alongside " + someStringData;
+//   next();
+// }, function(req, res) {
+//   res.send(justData + " this");
+// });
 
 app.listen(7000, () => {
   console.log("This is now running on port 7000!");
