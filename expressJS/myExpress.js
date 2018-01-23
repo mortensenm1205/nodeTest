@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 app.use(postedData);
 
-app.use('/', express.static('public'));
+// app.use('/', express.static('public'));
 
 /*
   Handling multiple handler functions with same route endpoint by chainging
@@ -41,19 +41,22 @@ app.use('/', express.static('public'));
   Here i am testing how to use multiple handler functions with the data
   from postedData
 */
-// app.get('/', (req, res, next) => {
-//   console.log("About to start");
-//   someStringData = JSON.stringify(req.body) + " " + req.method;
-//   justData = JSON.stringify(req.body);
-//   next();
-// });
-//
-// app.get('/', (req, res, next) => {
-//   justData += " and alongside " + someStringData;
-//   next();
-// }, function(req, res) {
-//   res.send(justData + " this");
-// });
+app.get('/', (req, res, next) => {
+  console.log("About to start");
+  someStringData = JSON.stringify(req.body) + " " + req.method;
+  justData = JSON.stringify(req.body);
+  res.write("someDummyText");
+  next();
+});
+
+app.get('/', (req, res, next) => {
+  // justData += " and alongside " + someStringData;
+  res.write(justData + " this");
+  next();
+}, function(req, res) {
+  res.write(justData + " this");
+  res.end();
+});
 
 app.listen(7000, () => {
   console.log("This is now running on port 7000!");
